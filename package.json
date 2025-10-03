@@ -1,0 +1,19 @@
+{
+  "name": "advanced-javascript-utilities-library",
+  "version": "1.0.0",
+  "description": "A compact, modern utility library showcasing mastery of advanced JavaScript concepts. Includes deep cloning with proxies, cancellable debounce/throttle, async retry with exponential backoff, a lightweight event emitter, and functional composition helpers. Designed as a “Lodash-lite” for learning, open-source contribution, and portfolio value.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RampraveenK/Advanced-JavaScript-Utilities-Library.git"
+  },
+  "author": "Rampraveen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RampraveenK/Advanced-JavaScript-Utilities-Library/issues"
+  },
+  "homepage": "https://github.com/RampraveenK/Advanced-JavaScript-Utilities-Library#readme"
+}
