@@ -16,12 +16,12 @@ function deepClone(value, options = {}) {
     if(typeof value === 'object' && value!==null){
         ans= {}
         for(let key in value){
-            return cloneObject(value[key],ans,options,path+key)
+            ans[key] = cloneObject(value[key],ans,options,path+key)
         }
     }else if(Array.isArray(value) && value.length>0){
         ans= []
         for(let index in value){
-            return cloneArray(value[index],ans,options,`${path}[${index}]`)
+            ans[index] = cloneArray(value[index],ans,options,`${path}[${index}]`)
         }
     } 
   // TODO: Implement main cloning logic
@@ -53,8 +53,7 @@ function cloneInternal(value, seen, options, path = []) {
  */
 function cloneDate(date) {
   // TODO: Implement Date cloning
-  const date = new Date(date)
-  return date
+  return new Date(date)
 }
 
 /**
