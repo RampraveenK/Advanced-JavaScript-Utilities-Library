@@ -39,6 +39,7 @@ function cloneInternal(value, seen, options, path = []) {
   // TODO: Handle transform hook if provided
   // TODO: Check atomicConstructors option
   // TODO: Handle built-in types (Date, RegExp, Map, Set, etc.)
+  if(value instanceof Date) cloneDate(value)
   // TODO: Handle typed arrays and ArrayBuffer
   // TODO: Handle functions based on options
   // TODO: Handle arrays
@@ -52,7 +53,8 @@ function cloneInternal(value, seen, options, path = []) {
  */
 function cloneDate(date) {
   // TODO: Implement Date cloning
- 
+  const date = new Date(date)
+  return date
 }
 
 /**
@@ -105,7 +107,7 @@ function cloneArray(array, seen, options, path) {
  * Clone object with property descriptors and prototype preserved
  */
 function cloneObject(obj, seen, options, path) {
-  // TODO: Get prototype
+  // TODO: Get prototype`
   // TODO: Create new object with same prototype
   // TODO: Mark in seen map
   // TODO: Get all property descriptors
