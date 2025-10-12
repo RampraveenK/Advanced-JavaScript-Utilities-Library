@@ -38,7 +38,8 @@ function cloneInternal(value, seen, options, path = []) {
   // TODO: Handle transform hook if provided
   // TODO: Check atomicConstructors option
   // TODO: Handle built-in types (Date, RegExp, Map, Set, etc.)
-  if(value instanceof Date) cloneDate(value)
+  if(value instanceof RegExp) cloneRegExp(value)
+  else if(value instanceof Date) cloneDate(value)
   // TODO: Handle typed arrays and ArrayBuffer
   // TODO: Handle functions based on options
   // TODO: Handle arrays
@@ -60,6 +61,7 @@ function cloneDate(date) {
  */
 function cloneRegExp(regexp) {
   // TODO: Implement RegExp cloning with flags
+  return new RegExp(regexp.source,regexp.flags)
 }
 
 /**
