@@ -11,18 +11,17 @@
  * @returns {*} Cloned value
  */
 function deepClone(value, options = {}) {
-    let ans,path='';
+    let ans={},path='';
     
-    if(typeof value === 'object' && value!==null){
-        ans= {}
-        for(let key in value){
-            ans[key] = cloneObject(value[key],ans,options,path+key)
-        }
-    }else if(Array.isArray(value) && value.length>0){
-        ans= []
-        for(let index in value){
-            ans[index] = cloneArray(value[index],ans,options,`${path}[${index}]`)
-        }
+
+    for(let key in value){
+      if(typeof value[key] === 'object' && value[key]!==null){
+          ans[key] = cloneObject(value[key],ans,options,path+key)
+      }else if(Array.isArray(value[key]) && value[key].length>0){
+          ans[key] = cloneArray(value[key],ans,options,`${path}[${key}]`)
+      } else{
+        ans[key] = value[key]
+      }
     } 
   // TODO: Implement main cloning logic
   // TODO: Initialize WeakMap for circular reference tracking
