@@ -99,8 +99,25 @@ function cloneArray(array, seen, options, path) {
   // TODO: Create new array
   const newArr = []
   // TODO: Mark in seen map
+  seen.set(array,newArr)
   // TODO: Clone each element recursively
+  array.forEach((item,index)=>{
+    if(typeof item === 'object' && item!==null){
+      newArr[index] = cloneObject(item,newArr,options,`${path}[${index}]`)
+    } else if(Array.isArray(item) && item.length>0){
+      newArr[index] = cloneArray(item,newArr,options,`${path}[${index}]`)
+    } else{
+      newArr[index] = item
+    }
+  })
   // TODO: Copy property descriptors for non-index properties
+  const descriptors = Object.getOwnPropertyDescriptors(array)
+  Object.keys(descriptors).forEach(key => {
+      if (!Number.isInteger(Number(key))) {
+            Object.defineProperty(newArr, key, descriptors[key]);
+        }
+      })
+  return newArr
 }
 
 /**
