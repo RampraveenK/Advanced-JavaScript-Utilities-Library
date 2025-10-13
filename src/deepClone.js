@@ -69,6 +69,19 @@ function cloneRegExp(regexp) {
  */
 function cloneMap(map, seen, options, path) {
   // TODO: Implement Map cloning (recursively clone keys and values)
+  const newMap = new Map()
+  seen.set(map,newMap)
+  map.forEach((value,key)=>{
+    if(typeof value === 'object' && value!==null){
+      newMap.set(key,cloneObject(value,newMap,options,`${path}.get(${key})`))
+    }else if(Array.isArray(value) && value.length>0){
+      newMap.set(key,cloneArray(value,newMap,options,`${path}.get(${key})`))
+    }else{
+      newMap.set(key,value)
+    }
+  })
+
+  return newMap
 }
 
 /**
@@ -76,6 +89,19 @@ function cloneMap(map, seen, options, path) {
  */
 function cloneSet(set, seen, options, path) {
   // TODO: Implement Set cloning (recursively clone values)
+  const newSet = new Set()  
+  seen.set(set,newSet)
+  set.forEach((value)=>{
+    if(typeof value === 'object' && value!==null){
+      newSet.add(cloneObject(value,newSet,options,`${path}.add(${value})`))
+    }else if(Array.isArray(value) && value.length>0){
+      newSet.add(cloneArray(value,newSet,options,`${path}.add(${value})`))
+    }else{
+      newSet.add(value)
+    }
+  })  
+
+  return newSet
 }
 
 /**
