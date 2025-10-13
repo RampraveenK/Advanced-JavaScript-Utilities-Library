@@ -39,6 +39,8 @@ function cloneInternal(value, seen, options, path = []) {
   // TODO: Check atomicConstructors option
   // TODO: Handle built-in types (Date, RegExp, Map, Set, etc.)
   if(value instanceof RegExp) cloneRegExp(value)
+  else if(value instanceof Map) cloneMap(value)
+  else if(value instanceof Set) cloneSet(value)
   else if(value instanceof Date) cloneDate(value)
   // TODO: Handle typed arrays and ArrayBuffer
   // TODO: Handle functions based on options
